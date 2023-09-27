@@ -5,14 +5,17 @@ import EditParty from "./EditParty";
 import { useState } from "react";
 import { useContext } from "react";
 import WaitlistContext from "../context/Waitlist";
+import SummaryParty from "./SummaryParty";
 
 function WaitingParty({ reference }) {
   const { deleteParty, editParty } = useContext(WaitlistContext);
   const [showEdit, setShowEdit] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
   const iconProperties = "float-right text-2xl cursor-pointer ml-5 mr-5";
 
   const handleEditButtonClick = () => {
     setShowEdit(!showEdit);
+    setShowSummary(false);
   }
 
   const handleDelete = () => {
@@ -25,19 +28,29 @@ function WaitingParty({ reference }) {
     editParty(reference.phoneNumber, newName)
   };
 
+  const handleSummaryClick = () => {
+    setShowSummary(!showSummary)
+    setShowEdit(false);
+  }
+
   let editWindow = null;
   if (showEdit) {
     editWindow = <EditParty onSubmit={handleFormSubmission}/>;
+  }
+
+  let summaryWindow = null;
+  if (showSummary) {
+    summaryWindow = <SummaryParty reference={reference}/>
   }
 
   return (
     <div>
       <div className="box-border bg-purple-300 m-5 p-5">
         <span className="italic font-serif font-bold">{reference.name}</span>, party of {reference.size}
-        <GoChevronDown className={iconProperties} />
+        <GoChevronDown className={iconProperties} onClick={handleSummaryClick}/>
         <GrEdit className={iconProperties} onClick={handleEditButtonClick}/>
         <TiDeleteOutline className={iconProperties} onClick={handleDelete} />
-        {showEdit && editWindow}</div>
+        {showEdit && editWindow || showSummary && summaryWindow}</div>
     </div>
   );
 }

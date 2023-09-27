@@ -15,7 +15,6 @@ function WaitingList() {
 
   return (
     <div className="box-border bg-purple-500 p-5">
-      TableCheck
       {renderedParties}
     </div>
   );

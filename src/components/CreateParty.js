@@ -12,7 +12,7 @@ function CreateParty() {
   const [phoneTerm, setPhoneTerm] = useState("(774)343-4300");
   const [timeTerm, setTimeTerm] = useState("7:30 PM");
 
-  const inputProps = "input ml-2 pl-2 mr-2"
+  const inputProps = "input m-2 pl-2 mr-2 bg-gray-300 rounded"
   const { addParty } = useContext(WaitlistContext);
 
   const handleClick = () => {
@@ -57,7 +57,7 @@ function CreateParty() {
 
   const modal = (
     <CreateModal onClose={handleClose} actionBar={actionBar}>
-      <div className="col-span-5">
+      <div className="col-span-5 flex-col">
         <form onSubmit={handleSubmit}>
           <label>Name:</label>
           <input
@@ -65,16 +65,19 @@ function CreateParty() {
             value={nameTerm}
             onChange={handleNameChange}
           />
+          <label>Size:</label>
           <input
             className={inputProps}
             value={sizeTerm}
             onChange={handleSizeChange}
           />
+          <label>Phone:</label>
           <input
             className={inputProps}
             value={phoneTerm}
             onChange={handlePhoneChange}
           />
+          <label>Time:</label>
           <input
             className={inputProps}
             value={timeTerm}
@@ -86,7 +89,7 @@ function CreateParty() {
   );
 
   return (
-    <div>
+    <div className="h-full bg-blue-100">
       <Button className="bg-green-300 p-2 m-5" onClick={handleClick}>
         Create Party
       </Button>
