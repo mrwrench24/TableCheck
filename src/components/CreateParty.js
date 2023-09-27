@@ -12,7 +12,7 @@ function CreateParty() {
   const [phoneTerm, setPhoneTerm] = useState("(774)343-4300");
   const [timeTerm, setTimeTerm] = useState("7:30 PM");
 
-  const inputProps = "input m-2 pl-2 mr-2 bg-gray-300 rounded"
+  const inputProps = "input m-2 pl-2 mr-2 bg-gray-300 rounded";
   const { addParty } = useContext(WaitlistContext);
 
   const handleClick = () => {
@@ -21,7 +21,7 @@ function CreateParty() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     addParty(nameTerm, sizeTerm, phoneTerm, timeTerm);
 
     handleClose();
@@ -57,32 +57,41 @@ function CreateParty() {
 
   const modal = (
     <CreateModal onClose={handleClose} actionBar={actionBar}>
-      <div className="col-span-5 flex-col">
+      <div>
         <form onSubmit={handleSubmit}>
-          <label>Name:</label>
-          <input
-            className={inputProps}
-            value={nameTerm}
-            onChange={handleNameChange}
-          />
-          <label>Size:</label>
-          <input
-            className={inputProps}
-            value={sizeTerm}
-            onChange={handleSizeChange}
-          />
-          <label>Phone:</label>
-          <input
-            className={inputProps}
-            value={phoneTerm}
-            onChange={handlePhoneChange}
-          />
-          <label>Time:</label>
-          <input
-            className={inputProps}
-            value={timeTerm}
-            onChange={handleTimeChange}
-          />
+          <span className="text-4xl">Create Party</span>
+          <div>
+            <label>Name:</label>
+            <input
+              className={inputProps}
+              value={nameTerm}
+              onChange={handleNameChange}
+            />
+          </div>
+          <div>
+            <label>Size:</label>
+            <input
+              className={inputProps}
+              value={sizeTerm}
+              onChange={handleSizeChange}
+            />
+          </div>
+          <div>
+            <label>Phone:</label>
+            <input
+              className={inputProps}
+              value={phoneTerm}
+              onChange={handlePhoneChange}
+            />
+          </div>
+          <div>
+            <label>Time:</label>
+            <input
+              className={inputProps}
+              value={timeTerm}
+              onChange={handleTimeChange}
+            />
+          </div>
         </form>
       </div>
     </CreateModal>
