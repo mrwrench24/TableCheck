@@ -4,7 +4,7 @@ import CreateParty from "./components/CreateParty";
 function App() {
   return (
     <div className="app mx-auto modal-container bg-purple-500 pt-5">
-      <span className="p-3">TableCheck V1.0</span>
+      <span className="p-3 text-3xl text-white font-semibold">TableCheck V1.1</span>
       <WaitingList />
       <CreateParty />
     </div>

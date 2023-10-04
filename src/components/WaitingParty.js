@@ -16,41 +16,46 @@ function WaitingParty({ reference }) {
   const handleEditButtonClick = () => {
     setShowEdit(!showEdit);
     setShowSummary(false);
-  }
+  };
 
   const handleDelete = () => {
     deleteParty(reference.phoneNumber);
   };
 
-  const handleFormSubmission = (newName) => {
+  const handleFormSubmission = (categoryToEdit, newTerm) => {
     setShowEdit(!showEdit);
 
-    editParty(reference.phoneNumber, newName)
+    editParty(categoryToEdit, newTerm, reference.phoneNumber);
   };
 
   const handleSummaryClick = () => {
-    setShowSummary(!showSummary)
+    setShowSummary(!showSummary);
     setShowEdit(false);
-  }
+  };
 
   let editWindow = null;
   if (showEdit) {
-    editWindow = <EditParty onSubmit={handleFormSubmission}/>;
+    editWindow = <EditParty onSubmit={handleFormSubmission} reference={reference} />;
   }
 
   let summaryWindow = null;
   if (showSummary) {
-    summaryWindow = <SummaryParty reference={reference}/>
+    summaryWindow = <SummaryParty reference={reference} />;
   }
 
   return (
     <div>
       <div className="box-border bg-purple-300 m-5 p-5">
-        <span className="italic font-serif font-bold">{reference.name}</span>, party of {reference.size}
-        <GoChevronDown className={iconProperties} onClick={handleSummaryClick}/>
-        <GrEdit className={iconProperties} onClick={handleEditButtonClick}/>
+        <span className="italic font-serif font-bold">{reference.name}</span>,
+        party of {reference.size}
+        <GoChevronDown
+          className={iconProperties}
+          onClick={handleSummaryClick}
+        />
+        <GrEdit className={iconProperties} onClick={handleEditButtonClick} />
         <TiDeleteOutline className={iconProperties} onClick={handleDelete} />
-        {showEdit && editWindow || showSummary && summaryWindow}</div>
+        {(showEdit && editWindow) || (showSummary && summaryWindow)}
+      </div>
     </div>
   );
 }

@@ -5,20 +5,48 @@ const WaitlistContext = createContext();
 function Provider({ children }) {
   const [waitlist, setWaitlist] = useState([
     {
-      name: "Sam",
+      name: "Jake",
       size: 3,
-      phoneNumber: 1,
+      phoneNumber: 7743434300,
       quotedTime: "7:30 PM",
       key: 1,
     },
-    {
-      name: "Liane",
-      size: 4,
-      phoneNumber: 2,
-      quotedTime: "8:30 PM",
-      key: 2,
-    },
   ]);
+
+  const changePartyBySelection = (selection, editTerm, party) => {
+    if (selection === "name") {
+      party.name = editTerm;
+    } else if (selection === "size") {
+      party.size = editTerm;
+    } else if (selection === "phoneNumber") {
+      party.phoneNumber = editTerm;
+    } else if (selection === "quotedTime") {
+      party.quotedTime = editTerm;
+    } else {
+      console.log(selection)
+      console.log(editTerm)
+      console.log(party)
+      throw new Error();
+    }
+  }
+
+  const getValueFrom = (value, party) => {
+    if (value === "name") {
+      return party.name;
+    } else if (value === "size") {
+      return party.size;
+    } else if (value === "phoneNumber") {
+      return party.phoneNumber;
+    } else if (value === "quotedTime") {
+      return party.quotedTime;
+    } else if (value === null) {
+      return null;
+    } else {
+      console.log(value)
+      console.log(party)
+      throw new Error();
+    }
+  }
 
   const valueToShare = {
     waitlist,
@@ -27,17 +55,14 @@ function Provider({ children }) {
         waitlist.filter((party) => party.phoneNumber !== targetNumber)
       );
     },
-    editParty: (targetNumber, newName) => {
+    editParty: (selection, editTerm, targetPhoneNumber) => {
       setWaitlist(
         waitlist.map((party) => {
-          if (party.phoneNumber === targetNumber) {
-            console.log(party);
-            party.name = newName;
-            console.log(party);
-            return party;
-          } else {
-            return party;
+          if (party.phoneNumber === targetPhoneNumber) {
+            changePartyBySelection(selection, editTerm, party)
           }
+          
+          return party;
         })
       );
     },
@@ -54,6 +79,13 @@ function Provider({ children }) {
           }
         ]
       )
+    },
+    getValueFrom: (value, targetNumber) => {
+      return waitlist.map( (party) => {
+        if (party.phoneNumber === targetNumber) {
+          return getValueFrom(value, party);
+        }
+      })
     }
   };
 
