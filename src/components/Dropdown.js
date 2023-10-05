@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GoArrowDown } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
 
 function Dropdown({ options, value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +17,7 @@ function Dropdown({ options, value, onChange }) {
   const renderedOptions = options.map((option) => {
     return (
       <div
-        className="hover:bg-sky-100 rounded cursor-pointer p-1"
+        className="mt-0.5 hover:bg-sky-100 border-black-100 rounded-lg cursor-pointer p-1"
         onClick={() => handleOptionClick(option)}
         key={option.value}
       >
@@ -33,7 +33,7 @@ function Dropdown({ options, value, onChange }) {
         onClick={handleClick}
       >
         {value?.label || "Select..."}
-        <GoArrowDown />
+        <GoArrowRight />
       </div>
       {isOpen && <div>{renderedOptions}</div>}
     </div>

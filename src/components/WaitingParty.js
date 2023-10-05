@@ -45,7 +45,7 @@ function WaitingParty({ reference }) {
 
   return (
     <div>
-      <div className="box-border bg-purple-300 m-5 p-5">
+      <div className="box-border rounded-2xl bg-purple-300 m-5 p-5">
         <span className="italic font-serif font-bold">{reference.name}</span>,
         party of {reference.size}
         <GoChevronDown

@@ -39,7 +39,7 @@ function EditParty({ onSubmit, reference }) {
   }
 
   return (
-    <div className="mt-5 p-3 bg-gray-100">
+    <div className="mt-5 p-3 bg-gray-100 rounded-2xl">
       <form onSubmit={handleFormSubmit}>
         <Dropdown options={editOptions} value={selection} onChange={handleSelect}></Dropdown>
         <input
