@@ -4,8 +4,8 @@ import { TiDeleteOutline } from "react-icons/ti";
 import EditParty from "./EditParty";
 import { useState } from "react";
 import { useContext } from "react";
-import WaitlistContext from "../context/Waitlist";
-import SummaryParty from "./SummaryParty";
+import WaitlistContext from "../../context/Waitlist";
+import SummaryParty from "../SummaryParty";
 
 function WaitingParty({ reference }) {
   const { deleteParty, editParty } = useContext(WaitlistContext);
@@ -35,7 +35,9 @@ function WaitingParty({ reference }) {
 
   let editWindow = null;
   if (showEdit) {
-    editWindow = <EditParty onSubmit={handleFormSubmission} reference={reference} />;
+    editWindow = (
+      <EditParty onSubmit={handleFormSubmission} reference={reference} />
+    );
   }
 
   let summaryWindow = null;
@@ -45,7 +47,7 @@ function WaitingParty({ reference }) {
 
   return (
     <div>
-      <div className="box-border rounded-2xl bg-purple-300 m-5 p-5">
+      <div className="rounded-2xl bg-purple-300 m-5 p-5 min-w-min">
         <span className="italic font-serif font-bold">{reference.name}</span>,
         party of {reference.size}
         <GoChevronDown

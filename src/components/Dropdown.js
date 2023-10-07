@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GoArrowRight } from "react-icons/go";
 
-function Dropdown({ options, value, onChange }) {
+function Dropdown({ options, value, onChange, useBorder }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -14,10 +14,17 @@ function Dropdown({ options, value, onChange }) {
     onChange(option);
   };
 
+  let dropdownClassNames = "rounded-lg p-1 ";
+  if (useBorder) {
+    dropdownClassNames += "m-2 p-2 bg-sky-100";
+  } else {
+    dropdownClassNames += "mt-0.5 hover:bg-sky-100 rounded-lg cursor-pointer";
+  }
+
   const renderedOptions = options.map((option) => {
     return (
       <div
-        className="mt-0.5 hover:bg-sky-100 border-black-100 rounded-lg cursor-pointer p-1"
+        className={dropdownClassNames}
         onClick={() => handleOptionClick(option)}
         key={option.value}
       >

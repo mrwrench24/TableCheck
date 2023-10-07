@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import WaitlistContext from "../context/Waitlist";
-import Dropdown from "./Dropdown";
+import WaitlistContext from "../../context/Waitlist";
+import Dropdown from "../Dropdown";
 
 function EditParty({ onSubmit, reference }) {
   const editOptions = [
@@ -47,7 +47,7 @@ function EditParty({ onSubmit, reference }) {
           value={editTerm}
           onChange={handleChange}
         />
-        <button className="button bg-blue-300 p-1 pl-2 pr-2 is-primary">
+        <button className="button bg-blue-300 p-1 pl-2 pr-2 is-primary rounded-xl">
           Save
         </button>
       </form>
